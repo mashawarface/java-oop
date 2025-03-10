@@ -1,0 +1,16 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        if (args.length != 3) {
+            System.out.println("Not enough arguments");
+        }
+
+        String txtFile = args[0];
+        String csvFile = args[1];
+
+        ReadFile input = new ReadFile(txtFile);
+        WriteFile output = new WriteFile(csvFile);
+
+    }
+}

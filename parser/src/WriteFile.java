@@ -1,16 +1,19 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Map;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
 public class WriteFile {
-    public WriteFile(String fileName, List<Map.Entry<String, Integer>> words, int wordsCount) {
-        writeCsv(fileName, words, wordsCount);
+    private final FileWriter file;
+
+    public WriteFile(String fileName) {
+        try {
+            this.file = new FileWriter(fileName);
+        } catch (IOException e) {
+            throw new RuntimeException("Error creating the file " + fileName, e);
+        }
     }
 
-    public void writeCsv(String fileName, List<Map.Entry<String, Integer>> words, int wordsCount) {
-        try (BufferedWriter file = new BufferedWriter(new FileWriter(fileName))) {
+    public void writeCsv(List<Map.Entry<String, Integer>> words, int wordsCount) {
+        try (BufferedWriter file = new BufferedWriter(this.file)) {
             for (Map.Entry<String, Integer> entry : words) {
                 double frequency = (double) entry.getValue() / wordsCount * 100;
                 file.write(String.format("%s;%d;%.1f%%\n", entry.getKey(), entry.getValue(), frequency));

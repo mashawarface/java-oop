@@ -2,13 +2,18 @@ import java.io.*;
 import java.util.*;
 
 public class ReadFile {
+    private final FileReader file;
     private final Map<String, Integer> words;
     private int wordsCount;
 
     public ReadFile(String fileName) {
-        this.words = new HashMap<>();
-        this.wordsCount = 0;
-        readWord(fileName);
+        try {
+            this.file = new FileReader(fileName);
+            this.words = new HashMap<>();
+            this.wordsCount = 0;
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException("File not found" + fileName, e);
+        }
     }
 
     public int getWordsCount() {
@@ -19,8 +24,8 @@ public class ReadFile {
         return words;
     }
 
-    public void readWord(String fileName) {
-        try (BufferedReader file = new BufferedReader(new FileReader(fileName))) {
+    public void readWord() {
+        try (BufferedReader file = new BufferedReader(this.file)) {
             String line;
 
             while ((line = file.readLine()) != null) {

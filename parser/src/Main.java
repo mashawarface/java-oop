@@ -1,7 +1,3 @@
-import java.io.BufferedReader;
-import java.util.Map;
-import java.util.*;
-
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
@@ -14,6 +10,9 @@ public class Main {
         String csvFile = args[1];
 
         ReadFile rf = new ReadFile(txtFile);
-        WriteFile wf = new WriteFile(csvFile, rf.getSortMap(), rf.getWordsCount());
+        WriteFile wf = new WriteFile(csvFile);
+
+        rf.readWord();
+        wf.writeCsv(rf.getSortMap(), rf.getWordsCount());
     }
 }

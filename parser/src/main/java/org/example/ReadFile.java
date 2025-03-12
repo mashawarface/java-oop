@@ -29,7 +29,7 @@ public class ReadFile {
 
                 for (String word : wordArray) {
                     if (!word.isEmpty()) {
-                        wordMap.put(word, wordMap.getOrDefault(word, 0) + 1);
+                        wordMap.merge(word, 1, Integer::sum);
                         ++wordCount;
                     }
                 }

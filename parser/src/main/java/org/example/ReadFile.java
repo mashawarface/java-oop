@@ -18,14 +18,6 @@ public class ReadFile {
         }
     }
 
-    public int getWordsCount() {
-        return wordsCount;
-    }
-
-    public Map<String, Integer> getMap() {
-        return words;
-    }
-
     public void readWord() {
         try (BufferedReader file = new BufferedReader(this.file)) {
             String line;
@@ -47,10 +39,8 @@ public class ReadFile {
         }
     }
 
-    public void printWords() {
-        for (String word : words.keySet()) {
-            System.out.println(word + " : " + words.get(word));
-        }
+    public int getWordsCount() {
+        return wordsCount;
     }
 
     public List<Map.Entry<String, Integer>> getSortMap() {

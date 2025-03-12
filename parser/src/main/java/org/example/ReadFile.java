@@ -5,14 +5,14 @@ import java.util.*;
 
 public class ReadFile {
     private final FileReader file;
-    private final Map<String, Integer> words;
-    private int wordsCount;
+    private final Map<String, Integer> wordMap;
+    private int wordCount;
 
     public ReadFile(String fileName) {
         try {
             this.file = new FileReader(fileName);
-            this.words = new HashMap<>();
-            this.wordsCount = 0;
+            this.wordMap = new HashMap<>();
+            this.wordCount = 0;
         } catch (FileNotFoundException e) {
             throw new RuntimeException("File not found" + fileName, e);
         }
@@ -25,12 +25,12 @@ public class ReadFile {
             while ((line = file.readLine()) != null) {
                 line = line.toLowerCase();
 
-                String[] wordsArray = line.split("[^a-zA-Z0-9']+");
+                String[] wordArray = line.split("[^a-zA-Z0-9']+");
 
-                for (String word : wordsArray) {
+                for (String word : wordArray) {
                     if (!word.isEmpty()) {
-                        words.put(word, words.getOrDefault(word, 0) + 1);
-                        ++wordsCount;
+                        wordMap.put(word, wordMap.getOrDefault(word, 0) + 1);
+                        ++wordCount;
                     }
                 }
             }
@@ -39,15 +39,15 @@ public class ReadFile {
         }
     }
 
-    public int getWordsCount() {
-        return wordsCount;
+    public int getWordCount() {
+        return wordCount;
     }
 
     public List<Map.Entry<String, Integer>> getSortMap() {
-        List<Map.Entry<String, Integer>> entryList = new ArrayList<>(words.entrySet());
+        List<Map.Entry<String, Integer>> wordList = new ArrayList<>(wordMap.entrySet());
 
-        entryList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
+        wordList.sort(Map.Entry.comparingByValue(Comparator.reverseOrder()));
 
-        return entryList;
+        return wordList;
     }
 }

@@ -14,10 +14,10 @@ public class WriteFile {
         }
     }
 
-    public void writeCsv(List<Map.Entry<String, Integer>> words, int wordsCount) {
+    public void writeCsv(List<Map.Entry<String, Integer>> wordList, int wordCount) {
         try (BufferedWriter file = new BufferedWriter(this.file)) {
-            for (Map.Entry<String, Integer> entry : words) {
-                double frequency = (double) entry.getValue() / wordsCount * 100;
+            for (Map.Entry<String, Integer> entry : wordList) {
+                double frequency = (double) entry.getValue() / wordCount * 100;
                 file.write(String.format("%s;%d;%.1f%%\n", entry.getKey(), entry.getValue(), frequency));
             }
         } catch (IOException e) {

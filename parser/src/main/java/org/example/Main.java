@@ -6,13 +6,13 @@ public class Main {
             System.out.println("Not enough arguments");
         }
 
-        String txtFile = args[0];
-        String csvFile = args[1];
+        String textName = args[0];
+        String csvName = args[1];
 
-        ReadFile rf = new ReadFile(txtFile);
-        WriteFile wf = new WriteFile(csvFile);
+        ReadFile textFile = new ReadFile(textName);
+        WriteFile csvFile = new WriteFile(csvName);
 
-        rf.readWord();
-        wf.writeCsv(rf.getSortMap(), rf.getWordsCount());
+        textFile.readWord();
+        csvFile.writeCsv(textFile.getSortMap(), textFile.getWordCount());
     }
 }

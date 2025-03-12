@@ -24,6 +24,7 @@ CSV файл упорядочен по убыванию частоты, самы
 Для обработки исключений использован механизм `try-with-resources` вместо `try-catch-finally`, который автоматически закрывает используемые файлы.
 
 ### Запуск проекта:
+Проект использует JDK 21 и Maven для сборки.
 ```
 git clone https://github.com/mashawarface/java-oop.git
 cd java-oop
